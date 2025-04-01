@@ -9,7 +9,7 @@ export default function App() {
 
   function adicionarTarefa(){
     if(texto == ''){
-      alert("Insira um texto!");
+      alert("Insira uma texto!");
       return;
     }
     let tarefa: _tarefa = {
