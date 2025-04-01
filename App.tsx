@@ -32,7 +32,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <TextInput style={styles.input} value={texto} onChangeText={setTexto}/>
-      <Button title='Adicionar tarefa' onPress={adicionarTarefa}/>
+      <Button color='purple' title='Adicionar tarefa' onPress={adicionarTarefa} />
       {mostrarTarefas()}
     </View>
   );
@@ -41,11 +41,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'lavender',
     alignItems: 'center',
     justifyContent: 'center',
   },
   input:{
-    borderWidth: 1
+    borderWidth: 1,
+    margin: 10,
   }
 });

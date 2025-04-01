@@ -7,15 +7,19 @@ type TarefaProp = {
 }
 
 export default function Tarefa(props:TarefaProp){
-    return <View>
+    return <View style={styles.tarefas}>
         <Text>{props.dados.texto}</Text>
-        <Button color={'red'} title="Excluir"
+        <Button  color={'maroon'} title="Excluir"
             onPress={() => {props.handleDeletePress(props.dados.id)}}/>
     </View>;
 }
 
 const styles = StyleSheet.create({
     div:{
-        borderWidth: 1
+        borderWidth: 1,
+    },
+    tarefas:{
+        margin: 10,
+        flexDirection: 'row',
     }
 })
