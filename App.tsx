@@ -1,52 +1,25 @@
-import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import _tarefa from './types/_tarefa';
-import Tarefa from './components/Tarefa';
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import ToDoScreen from "./pages/ToDoListScreen";
+import BuscaCepScreen from "./pages/BuscaCepScreen";
+import HomeScreen from "./pages/HomeScreen";
 
-export default function App() {
-  const [texto, setTexto] = useState<string>('');
-  const [tarefas, setTarefas] = useState<_tarefa[]>([]);
-
-  function adicionarTarefa(){
-    if(texto == ''){
-      alert("Insira uma texto!");
-      return;
-    }
-    let tarefa: _tarefa = {
-      id: tarefas.length +1,
-      texto
-    };
-
-    setTarefas([...tarefas, tarefa]);
-  }
-
-  function mostrarTarefas(){
-    return tarefas.map(t => <Tarefa key={t.id} dados={t} handleDeletePress={excluir}/>);
-  }
-
-  function excluir(id:number){
-    let f = tarefas.filter(t => t.id != id);
-    setTarefas(f);
-  }
-
-  return (
-    <View style={styles.container}>
-      <TextInput style={styles.input} value={texto} onChangeText={setTexto}/>
-      <Button color='purple' title='Adicionar tarefa' onPress={adicionarTarefa} />
-      {mostrarTarefas()}
-    </View>
-  );
+const Stack = createNativeStackNavigator();
+export default function App(){
+  return <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen
+        name = "Home"
+        component={HomeScreen}
+      />
+      <Stack.Screen
+        name = "to-do-list"
+        component={ToDoScreen}
+      />
+      <Stack.Screen
+        name="busca-cep"
+        component={BuscaCepScreen}
+      />
+    </Stack.Navigator>
+  </NavigationContainer>
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'lavender',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input:{
-    borderWidth: 1,
-    margin: 10,
-  }
-});
